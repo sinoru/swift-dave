@@ -17,6 +17,77 @@ let package = Package(
             path: "Vendors/nlohmann/json",
             sources: ["include"]),
         .target(
+            name: "CMLS++Shims"),
+        .target(
+            name: "CMLS++Bytes",
+            dependencies: [
+                "CMLS++Shims",
+                "CMLS++TLSSyntax",
+            ],
+            path: "Vendors/mlspp/lib/bytes",
+            sources: [
+                "src",
+            ],
+            cSettings: [
+                .define("WITH_BORINGSSL"),
+            ],
+            cxxSettings: [
+                .define("WITH_BORINGSSL"),
+            ]),
+        .target(
+            name: "CMLS++HPKE",
+            dependencies: [
+                "CBoringSSL",
+                "CJSON",
+                "CMLS++Shims",
+                "CMLS++Bytes",
+                "CMLS++TLSSyntax",
+            ],
+            path: "Vendors/mlspp/lib/hpke",
+            sources: [
+                "src",
+            ],
+            cSettings: [
+                .define("WITH_BORINGSSL"),
+            ],
+            cxxSettings: [
+                .define("WITH_BORINGSSL"),
+            ]),
+        .target(
+            name: "CMLS++TLSSyntax",
+            dependencies: [
+                "CMLS++Shims",
+            ],
+            path: "Vendors/mlspp/lib/tls_syntax",
+            sources: [
+                "src",
+            ],
+            cSettings: [
+                .define("WITH_BORINGSSL"),
+            ],
+            cxxSettings: [
+                .define("WITH_BORINGSSL"),
+            ]),
+        .target(
+            name: "CMLS++",
+            dependencies: [
+                "CJSON",
+                "CBoringSSL",
+                "CMLS++Bytes",
+                "CMLS++HPKE",
+                "CMLS++TLSSyntax",
+            ],
+            path: "Vendors/mlspp",
+            sources: [
+                "src",
+            ],
+            cSettings: [
+                .define("WITH_BORINGSSL"),
+            ],
+            cxxSettings: [
+                .define("WITH_BORINGSSL"),
+            ]),
+        .target(
             name: "CBoringSSL",
             path: "Vendors/BoringSSL",
             exclude: [
@@ -104,7 +175,8 @@ let package = Package(
                 "crypto",
                 "gen/bcm",
                 "gen/crypto",
-                "third_party/fiat/asm"
+                "include",
+                "third_party/fiat/asm",
             ],
             cSettings: [
                 .define("_HAS_EXCEPTIONS", to: "0", .when(platforms: [.windows])),
@@ -130,5 +202,5 @@ let package = Package(
         ),
     ],
     cLanguageStandard: .gnu11,
-    cxxLanguageStandard: .gnucxx14
+    cxxLanguageStandard: .gnucxx17
 )

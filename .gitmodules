@@ -1,6 +1,9 @@
 [submodule "Vendors/BoringSSL"]
 	path = Vendors/BoringSSL
 	url = https://boringssl.googlesource.com/boringssl
+[submodule "Vendors/mlspp"]
+	path = Vendors/mlspp
+	url = https://github.com/cisco/mlspp.git
 [submodule "Vendors/nlohmann/json"]
 	path = Vendors/nlohmann/json
 	url = https://github.com/nlohmann/json.git
