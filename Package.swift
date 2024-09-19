@@ -11,10 +11,11 @@ let package = Package(
             name: "DAVE",
             targets: ["DAVE"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/nlohmann/json.git", from: "3.11.3")
-    ],
     targets: [
+        .target(
+            name: "CJSON",
+            path: "Vendors/nlohmann/json",
+            sources: ["include"]),
         .target(
             name: "CBoringSSL",
             path: "Vendors/BoringSSL",
