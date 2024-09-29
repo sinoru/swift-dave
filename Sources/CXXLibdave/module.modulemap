@@ -1,0 +1,8 @@
+module CXXLibdave {
+    header "cryptor.h"
+    header "cryptor_manager.h"
+    header "decryptor.h"
+    header "encryptor.h"
+
+    export *
+}

@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "swift-dave",
+    platforms: [
+        .macOS(.v10_15),
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -12,6 +15,31 @@ let package = Package(
             targets: ["DAVE"]),
     ],
     targets: [
+        .target(
+            name: "DAVE",
+            dependencies: ["CXXLibdave"],
+            swiftSettings: [
+                .interoperabilityMode(.Cxx),
+            ]),
+        .testTarget(
+            name: "DAVETests",
+            dependencies: ["DAVE"]
+        ),
+        .target(
+            name: "CXXLibdave",
+            dependencies: [
+                "CBoringSSL",
+                "CMLS++",
+            ],
+            exclude: [
+                "afl_driver",
+                "test",
+                "mls/persisted_key_pair_null.cpp",
+                "mls/detail/persisted_key_pair_apple.cpp",
+                "mls/detail/persisted_key_pair_null.cpp",
+                "mls/detail/persisted_key_pair_win.cpp",
+            ],
+            publicHeadersPath: "."),
         .target(
             name: "CJSON",
             path: "Vendors/nlohmann/json",
@@ -194,12 +222,6 @@ let package = Package(
                 .define("_XOPEN_SOURCE", to: "700", .when(platforms: [.linux])),
                 .define("BORINGSSL_IMPLEMENTATION"),
             ]),
-        .target(
-            name: "DAVE"),
-        .testTarget(
-            name: "DAVETests",
-            dependencies: ["DAVE"]
-        ),
     ],
     cLanguageStandard: .gnu11,
     cxxLanguageStandard: .gnucxx17
