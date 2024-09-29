@@ -1,6 +1,3 @@
-[submodule "Vendors/BoringSSL"]
-	path = Vendors/BoringSSL
-	url = https://boringssl.googlesource.com/boringssl
 [submodule "Vendors/mlspp"]
 	path = Vendors/mlspp
 	url = https://github.com/cisco/mlspp.git

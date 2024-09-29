@@ -1,0 +1,15 @@
+{
+  "originHash" : "2980d4534d00aa1e5a4c4e34247c2fae6411cbce26f80b505e57c14d2cd3f73b",
+  "pins" : [
+    {
+      "identity" : "swift-crypto",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sinoru/swift-crypto.git",
+      "state" : {
+        "revision" : "c91546682e60cd97b65a4cc456b393ca05892a8f",
+        "version" : "3.7.1"
+      }
+    }
+  ],
+  "version" : 3
+}
